@@ -1,21 +1,21 @@
 public class Solution {
-public IList<IList<string>> GroupAnagrams(string[] strs) {
-        var dict = new Dictionary<string,IList<string>>();
-        for(int i = 0; i < strs.Length; i++)
+    public IList<IList<string>> GroupAnagrams(string[] strs)
+    {
+        var dict = new Dictionary<string, IList<string>>();
+        for (int i = 0; i < strs.Length; i++)
         {
-            var strArray = strs[i].ToArray();
-            Array.Sort(strArray);
-            var hash = new string(strArray);
-            if(dict.ContainsKey(hash))
+            char[] hash = new char[26];
+            foreach (char ch in strs[i])
             {
-               var val = dict.GetValueOrDefault(hash);
-               val.Add(strs[i]);
+                hash[ch - 'a']++;
             }
-            else
+            var k = new string(hash);
+            if (!dict.ContainsKey(k))
             {
-                dict.Add(hash,new List<string>{strs[i]});
+                dict[k] = new List<string>();
             }
-        }    
+            dict[k].Add(strs[i]);
+        }
         return dict.Values.ToList();
     }
 }
