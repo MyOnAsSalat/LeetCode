@@ -1,2 +1,2 @@
 # LeetCode
-Collection of passed LeetCode problem.
+Collection of passed LeetCode problems.
