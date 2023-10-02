@@ -1,22 +1,29 @@
 public class Solution {
-public int[] TopKFrequent(int[] nums, int k)
-    {
+public int[] TopKFrequent(int[] nums, int k) {
+        int[] arr = new int[k];
         var dict = new Dictionary<int, int>();
-        foreach (var item in nums)
+        for (int i = 0; i < nums.Length; i++)
         {
-            if (!dict.ContainsKey(item))
+            if (dict.ContainsKey(nums[i]))
             {
-                dict[item] = 1;
+                dict[nums[i]]++;
             }
-            dict[item]++;
+            else
+            {
+                dict.Add(nums[i], 1);    
+            }
         }
-        var dictList = dict.ToList();
-        dictList.Sort((pair1,pair2) => pair2.Value.CompareTo(pair1.Value));
-        var result = new int[k];
-        for (int i = 0; i < k; i++)
+        
+        var pq = new PriorityQueue<int, int>();
+        foreach (var key in dict.Keys)
         {
-            result[i] = dictList[i].Key;
+            pq.Enqueue(key, dict[key]);
+            if (pq.Count > k) pq.Dequeue();
         }
-        return result;
+        int i2 = k;
+        while (pq.Count > 0) {
+            arr[--i2] = pq.Dequeue();
+        }
+        return arr;
     }
 }
