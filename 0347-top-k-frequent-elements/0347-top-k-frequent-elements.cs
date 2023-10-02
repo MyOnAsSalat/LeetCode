@@ -6,7 +6,7 @@ public int[] TopKFrequent(int[] nums, int k)
         {
             if (!dict.ContainsKey(item))
             {
-                dict[item] = 0;
+                dict[item] = 1;
             }
             dict[item]++;
         }
