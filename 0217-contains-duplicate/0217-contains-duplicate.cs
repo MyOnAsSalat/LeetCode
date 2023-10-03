@@ -1,9 +1,9 @@
 public class Solution {
     public bool ContainsDuplicate(int[] nums) {
-        HashSet<int> set = new HashSet<int>();      
+        HashSet<int> s = new HashSet<int>();      
         foreach (int val in nums){
-            if (set.Contains(val)) return true;
-            set.Add(val);
+            if (s.Contains(val)) return true;
+            s.Add(val);
         }
         return false;
     }
